@@ -1,24 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import RenderPages from './Pages/RenderPages';
+
+import React,{ useState, useEffect } from "react";
+import HashLoader from "react-spinners/HashLoader";
+import logo from './images/logo.jpeg'
 
 function App() {
+  let [loading, setLoading] = useState(false);
+  let [color, setColor] = useState("#1E90FF");
+
+  useEffect(()=>{
+    setLoading(true)
+    setTimeout(()=>{
+      setLoading(false)
+    },1000)
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {
+      loading ?
+ <HashLoader
+        color={color}
+        loading={loading}
+        size={150}    
+      />
+      
+      :
+<RenderPages />
+    }
+    
+    </>
   );
 }
 
